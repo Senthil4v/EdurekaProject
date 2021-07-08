@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: install docker
+    yum: name=docker state=present
+  - name: start docker
+    service: name=docker state=started
+  - name: install git
+    yum: name=git state=present
+  - name: clone a repo
+    git: repo=https://github.com/Vandanahegde96/EdurekaProject.git dest=/tmp/mygitrepo
+  - name: build docker file
+    command: chdir=/tmp/mygitrepo docker build -t mywebbapp .
+  - name: create container
+    command: docker run -itd -P mywebbapp
