@@ -10,7 +10,7 @@
   - name: install git
     yum: name=git state=present
   - name: clone a repo
-    git: repo=https://github.com/Vandanahegde96/EdurekaProject.git dest=/tmp/mygitrepo
+    git: repo=https://github.com/Senthil4v/EdurekaProject.git dest=/tmp/mygitrepo
   - name: build docker file
     command: chdir=/tmp/mygitrepo docker build -t mywebbapp .
   - name: create container
